@@ -5,9 +5,9 @@
     <ul class="companies_list">
       <label v-if="notLoaded">The data below is just example data, while we are waiting for the real stuff 😉</label>
       <li class="company_item" v-for="company in companies">
-        <a :href="company.website">
+        <a class="__link" :href="company.website">
         <h3>
-          <img v-if="company.favicon" :src="company.favicon">
+          <img width="16" v-if="company.favicon" :src="company.favicon">
           {{ company.name }}
           </h3>     
         </a>
@@ -30,6 +30,10 @@
     /* border-style: solid; */
     padding: 12px;
     margin: 12px;
+}
+.__link {
+  margin-left: 20px;
+  text-decoration: none;
 }
 </style>
 
