@@ -13,65 +13,27 @@ exports.handler = (evt,ctx,cb) => {
         });
     }
     // Static params - 100 companies
-    request.get(brregAPIurl, (e,r) => {
-        if(e) {
-            cb(e)
-            throw Error(e);
-        } else {
-
-            console.log(typeof r.body)
-            cb(null, {
-                statusCode: 200,
-                body: r.body
-            })
-
-            /*
-            //console.log(typeof r.body)
-            const parsedData = JSON.parse(r.body);
-            //console.log('Parsed data ',parsedData._embedded.enheter);
-            cb(null, {
-                statusCode: 200,
-                body: parsedData
-            })
-            */
-
-            /*
-            const parseCompanies = new Promise(function(resolve,reject) {
-                let companies = companiesWithUrl(parsedData);
-                resolve(companies)
-                reject(!companies)
-            }).then(function(comps) {
-                cb(null, {
-                    statusCode: 200,
-                    body: comps
-                })
-            }).catch(e => {
-                //reject(e)
-                throw Error(e)
-            });
-
-            parseCompanies();*/
-
-            /*
-            companiesWithUrl(parsedData._embedded.enheter, function(error, result) {
-                if(error) {
-                    console.error(error);
-                } else {
-                    console.log(result);
-                }
-            });*/
-            
-
-            /*async function serveCompanies(comps) {
-                console.log('calling');
-                const companies = companiesWithUrl(comps);
-                cb(null, {
-                    statusCode: 200,
-                    body: companies
-                })
+    const find = new Promise(function(resolve,reject) {        
+        request.get(brregAPIurl, (e,r) => {
+            if(e) {
+                console.error(e);
+                reject(e)
+            } else {
+                const parsedData = JSON.parse(r.body);
+                resolve(parsedData._embedded.enheter)
             }
-
-            serveCompanies(parsedData._embedded.enheter);*/
-        }
+        })
     })
+    find.then(function(companies) {
+        console.log("Companies ",companies.length);
+        cb(null, {
+            statusCode: 200,
+            body: {'message':'Hello World!'}
+        })
+    })
+    find.catch(e => {
+        cb(e,{statusCode: 500, body: e});
+    })
+
+    find();
 }
