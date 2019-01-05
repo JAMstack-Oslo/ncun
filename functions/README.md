@@ -3,3 +3,5 @@
 ## BRREG API
 
 Currently, has a max of 10 000 records to return.
+
+(Dokumentasjon)[https://data.brreg.no/enhetsregisteret/api/docs/index.html]
