@@ -5,8 +5,8 @@
         <g-link :to="{ name: 'home' }">Gridsome</g-link>
       </strong>
       <nav class="nav">
-        <g-link class="nav__link" :to="{ name: 'home' }">Home</g-link>
-        <g-link class="nav__link" :to="{ name: 'about' }">About</g-link>
+        <g-link class="nav__link" :to="{ name: 'home' }">🏚</g-link>
+        <g-link class="nav__link" :to="{ name: 'about' }">ℹ️</g-link>
       </nav>
     </header>
     <slot/>
@@ -38,5 +38,6 @@ body {
 
 .nav__link {
   margin-left: 20px;
+  text-decoration: none;
 }
 </style>
