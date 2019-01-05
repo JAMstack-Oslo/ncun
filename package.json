@@ -4,6 +4,7 @@
   "scripts": {
     "lambda-build": "netlify-lambda build functions",
     "lambda-serve": "netlify-lambda serve functions",
+    "lint": "eslint --fix *.js",
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
