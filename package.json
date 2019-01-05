@@ -2,11 +2,17 @@
   "name": "ncun",
   "private": true,
   "scripts": {
+    "lambda-build": "netlify-lambda build functions",
+    "lambda-serve": "netlify-lambda serve functions",
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "gridsome": "^0.3.0"
+    "gridsome": "^0.3.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "netlify-lambda": "^1.1.1"
   }
 }
