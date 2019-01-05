@@ -3,7 +3,6 @@ const brregAPIurl = 'https://data.brreg.no/enhetsregisteret/api/enheter/?page=0&
 
 exports.handler = (evt,ctx,callback) => {
 
-    /*
     checkIfUsingNetlify = () => {
         // Return only companies using netlify
     }
@@ -12,8 +11,10 @@ exports.handler = (evt,ctx,callback) => {
         // Return only companies with url
         return companies.filter(c => {
             return c.hasOwnProperty('hjemmeside')
+        }).map(c => {
+            return {name: c.navn, website: c.hjemmeside}
         });
-    }*/
+    }
     // Static params - 100 companies
     /*const find = new Promise(function(resolve,reject) {
         request.get(brregAPIurl, (e,r) => {
@@ -48,11 +49,13 @@ exports.handler = (evt,ctx,callback) => {
             callback(e);
         } else {
             const parsedData = JSON.parse(r.body);
-            //resolve(parsedData._embedded.enheter)
+            const comps = companiesWithUrl(parsedData._embedded.enheter);
+
+            console.log("Comps ",comps.length)
 
             callback(null, {
                 statusCode: 200,
-                body: JSON.stringify(parsedData._embedded.enheter.filter(c=>c.hasOwnProperty('hjemmeside')))
+                body: JSON.stringify(comps)
             })
         }
     })
