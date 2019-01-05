@@ -3,13 +3,14 @@
     <h1>Companies in 🇳🇴 using Netlify</h1>
     <hr>
     <ul class="companies_list">
-      <li v-for="company in companies">
+      <label v-if="notLoaded">The data below is just example data, while we are waiting for the real stuff 😉</label>
+      <li class="company_item" v-for="company in companies">
+        <a :href="company.website">
         <h3>
-          <a :href="company.website">
           <img v-if="company.favicon" :src="company.favicon">
           {{ company.name }}
-          </a>
-          </h3>        
+          </h3>     
+        </a>
       </li>
     </ul>
 
@@ -18,15 +19,27 @@
 
 <style>
 .companies_list {
-      list-style-type: none;
+    list-style-type: none;
+    margin: 12 auto;
+    /* text-align: center; */
+}
+
+.company_item {
+    display: inline-block;
+    vertical-align: top;
+    /* border-style: solid; */
+    padding: 12px;
+    margin: 12px;
 }
 </style>
 
 <script>
+var notLoaded = true;
 const companies = [
   {
     name: 'Solutus',
-    website: 'https://solutus.no'
+    website: 'https://solutus.no',
+    favicon: 'https://solutus.no/favicon.ico',
   },
   {
     name: 'Google',
@@ -37,6 +50,7 @@ const companies = [
 export default {
   data () {
     return {
+      notLoaded: notLoaded,
       companies: companies
     }
   },
