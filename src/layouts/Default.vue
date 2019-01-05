@@ -1,9 +1,6 @@
 <template>
   <div class="layout">
     <header class="header">
-      <strong>
-        <g-link :to="{ name: 'home' }">Gridsome</g-link>
-      </strong>
       <nav class="nav">
         <g-link class="nav__link" :to="{ name: 'home' }">🏚</g-link>
         <g-link class="nav__link" :to="{ name: 'about' }">ℹ️</g-link>
@@ -32,8 +29,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  height: 80px;
+  margin-bottom: 12px;
+  height: 40px;
 }
 
 .nav__link {
