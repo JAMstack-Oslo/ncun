@@ -1,7 +1,12 @@
 <template>
   <Layout>
     <h1>About us</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error doloremque omnis animi, eligendi magni a voluptatum, vitae, consequuntur rerum illum odit fugit assumenda rem dolores inventore iste reprehenderit maxime! Iusto.</p>
+    <p>This website is developed by <a href="https://amanmender.com/">Aman Mender</a> and
+    <a href="https://twitter.com/aalemayhu">Alexander Alemayhu</a>.</p>
+
+    <p>We are using it to find potential people and companies to invite to the
+      <a href="https://www.meetup.com/JAMstack-Oslo/">JAMstack Oslo Meetup</a>.
+    </p>
   </Layout>
 </template>
 
