@@ -1,7 +1,9 @@
 const request = require('request');
 const brregAPIurl = 'https://data.brreg.no/enhetsregisteret/api/enheter/?page=0&size=100';
 
-exports.handler = (evt,ctx,cb) => {
+exports.handler = (evt,ctx,callback) => {
+
+    /*
     checkIfUsingNetlify = () => {
         // Return only companies using netlify
     }
@@ -11,67 +13,48 @@ exports.handler = (evt,ctx,cb) => {
         return companies.filter(c => {
             return c.hasOwnProperty('hjemmeside')
         });
-    }
+    }*/
     // Static params - 100 companies
+    /*const find = new Promise(function(resolve,reject) {
+        request.get(brregAPIurl, (e,r) => {
+            if(e) {
+                console.error(e);
+                reject(e)
+            } else {
+                const parsedData = JSON.parse(r.body);
+                resolve(parsedData._embedded.enheter)
+            }
+        })
+    })
+    find.then(function(companies) {
+        console.log("Companies ",companies.length);
+        cb(null, {
+            statusCode: 200,
+            body: JSON.stringify({'message':'Hello World!'}):
+        })
+    })
+    find.catch(e => {
+        console.error('Error called ',e);
+        cb(null,{statusCode: 500, body: e});
+    })
+
+    find();*/
+
+    
     request.get(brregAPIurl, (e,r) => {
         if(e) {
-            cb(e)
-            throw Error(e);
+            console.error(e);
+            //reject(e)
+            callback(e);
         } else {
-
-            console.log(typeof r.body)
-            cb(null, {
-                statusCode: 200,
-                body: r.body
-            })
-
-            /*
-            //console.log(typeof r.body)
             const parsedData = JSON.parse(r.body);
-            //console.log('Parsed data ',parsedData._embedded.enheter);
-            cb(null, {
+            //resolve(parsedData._embedded.enheter)
+
+            callback(null, {
                 statusCode: 200,
-                body: parsedData
+                body: JSON.stringify(parsedData._embedded.enheter.filter(c=>c.hasOwnProperty('hjemmeside')))
             })
-            */
-
-            /*
-            const parseCompanies = new Promise(function(resolve,reject) {
-                let companies = companiesWithUrl(parsedData);
-                resolve(companies)
-                reject(!companies)
-            }).then(function(comps) {
-                cb(null, {
-                    statusCode: 200,
-                    body: comps
-                })
-            }).catch(e => {
-                //reject(e)
-                throw Error(e)
-            });
-
-            parseCompanies();*/
-
-            /*
-            companiesWithUrl(parsedData._embedded.enheter, function(error, result) {
-                if(error) {
-                    console.error(error);
-                } else {
-                    console.log(result);
-                }
-            });*/
-            
-
-            /*async function serveCompanies(comps) {
-                console.log('calling');
-                const companies = companiesWithUrl(comps);
-                cb(null, {
-                    statusCode: 200,
-                    body: companies
-                })
-            }
-
-            serveCompanies(parsedData._embedded.enheter);*/
         }
     })
+
 }
