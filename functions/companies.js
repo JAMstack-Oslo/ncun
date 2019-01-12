@@ -20,6 +20,10 @@ exports.handler = (evt, ctx, callback) => {
       const parsedData = JSON.parse(r.body);
       const comps = companiesWithUrl(parsedData._embedded.enheter);
       callback(null, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true
+        },
         statusCode: 200,
         body: JSON.stringify(comps)
       });
