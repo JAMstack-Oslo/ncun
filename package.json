@@ -7,10 +7,10 @@
     "lint": "eslint --fix *.js",
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore",
-    "lint": "eslint --fix *.js"
+    "explore": "gridsome explore"
   },
   "dependencies": {
+    "@scanf/isun": "^0.2.0",
     "gridsome": "^0.3.0",
     "request": "^2.88.0"
   },
