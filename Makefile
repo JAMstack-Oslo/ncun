@@ -6,3 +6,9 @@ dev:
 
 explore:
 	npm run explore
+
+l%-build:
+	npm run lambda-build
+
+l%-serve:
+	npm run lambda-serve
