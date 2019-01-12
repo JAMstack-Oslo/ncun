@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@scanf/isun": "^0.2.0",
+    "axios": "^0.18.0",
     "gridsome": "^0.3.0",
     "request": "^2.88.0"
   },
